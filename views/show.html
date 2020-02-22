@@ -7,11 +7,15 @@
 <body>
 <div class="container">
     <h1>Database Pets</h1>
-    <ul>
+    <ol>
         <repeat group="{{ @queryAllPets }}" value="{{ @pet }}">
-            <li>{{ @pet['id'] }} - {{ @pet['name'] }} is a {{ @pet['color'] }} ({{ @pet['type'] }})</li>
+            <li>{{ @pet['name'] }} is a {{ @pet['color'] }} ({{ @pet['type'] }})</li>
         </repeat>
-    </ul>
+    </ol>
+
+    <br>
+    <h3>Back To Home</h3>
+    <button type="button" onclick="window.location.href='https://sjamieson.greenriverdev.com/328/pets5/'">Click Me</button>
 </div>
 </body>
 </html>
