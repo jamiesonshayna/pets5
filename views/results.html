@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pets 4</title>
+</head>
+<body>
+    <h1>Results Page</h1>
+<!--    <p>Thank you for ordering a {{ @SESSION.color }} {{ @SESSION.animal }}!</p>-->
+    <h2>{{ @SESSION.myAnimal->getColor() }}</h2>
+    <h3>{{ @SESSION.myAnimal->talk() }}</h3>
+    <h4>{{ @SESSION.myAnimal->getName() }}</h4>
+</body>
+</html>
