@@ -66,8 +66,6 @@ class PetController
             {
                 $_SESSION['myAnimal']->setColor($color);
                 $colorIsValid = true;
-                //$_SESSION['color']=$color;
-                //$f3->reroute('/results');
             }
             else {
                 $this->_f3->set("errors['color']","Please enter an color.");
@@ -87,15 +85,26 @@ class PetController
 
         }
 
-//    $_SESSION['animal'] = $_POST['animal'];
         $view = new Template();
         echo $view->render('views/form2.html');
     }
 
     public function results()
     {
-        //    $_SESSION['color'] = $_POST['color'];
         $view = new Template();
         echo $view->render('views/results.html');
+    }
+
+    public function show()
+    {
+        // query the database for all pets
+        $allPets = $GLOBALS['db']->getAllPets();
+
+        // save all pets to fat free hive
+        $this->_f3->set('queryAllPets', $allPets);
+
+        // render page that displays all pets from query
+        $view = new Template();
+        echo $view->render('views/show.html');
     }
 }

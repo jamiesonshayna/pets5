@@ -1,5 +1,7 @@
 <?php
 
+require_once("config-database.php");
+
 class Database
 {
     // PDO object
@@ -12,7 +14,6 @@ class Database
     {
         try {
             // Create a new PDO connection
-            echo "Connected dude";
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
         } catch(PDOException $e) {
             echo $e->getMessage();
@@ -27,7 +28,7 @@ class Database
     function getAllPets()
     {
         // define the query
-        $sql = "SELECT name, color, type FROM pets ORDER BY type";
+        $sql = "SELECT * FROM pets ORDER BY id";
 
         // prepare the statement
         $statement = $this->_dbh->prepare($sql);

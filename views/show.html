@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets 5 | Show</title>
+</head>
+<body>
+<div class="container">
+    <h1>Database Pets</h1>
+    <ul>
+        <repeat group="{{ @queryAllPets }}" value="{{ @pet }}">
+            <li>{{ @pet['id'] }} - {{ @pet['name'] }} is a {{ @pet['color'] }} ({{ @pet['type'] }})</li>
+        </repeat>
+    </ul>
+</div>
+</body>
+</html>

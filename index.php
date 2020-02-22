@@ -21,6 +21,7 @@ $f3 = Base::instance(); // invoke static
 
 //instantiate controller
 $controller = new PetController($f3);
+$db = new Database();
 
 //set the debug level
 $f3->set('DEBUG',3);
@@ -31,15 +32,6 @@ $f3->set('colors',array('pink','green','blue'));
 // this is what they should see
 $f3->route('GET /', function() {
     $GLOBALS['controller']->defaultRoute();
-
-//    echo "<h1>My Pets</h1>";
-//    echo "<a href='order'>Order a Pet</a>";
-
-    // create a new view object by instantiating the fat-free templating class
-    //$view = new Template();
-
-    // on the object template we render the home page through this route
-   // echo $view->render('views/home.html');
 });
 
 
@@ -71,93 +63,25 @@ $f3->route('GET /@item', function($f3, $params) {
 
 // route to our first page of our order form
 // define another route called order that displays a form
-$f3->route('GET|POST /order', function($f3) {
+$f3->route('GET|POST /order', function() {
     $GLOBALS['controller']->home();
-
-//    $_SESSION=array();//clear the session
-//    if(isset($_POST['animal']))
-//    {
-//        $animal = $_POST['animal'];
-//        $f3->set('stickyAnimal', $animal);
-//        if(validAnimal($animal))
-//        {
-//            if (trim(strtoupper($animal)) == 'CAT'){
-//                $_SESSION['myAnimal'] = new Cat();
-//            }
-//            else if (trim(strtoupper($animal)) == 'DOG'){
-//                $_SESSION['myAnimal'] = new Dog();
-//            }
-//            else if (trim(strtoupper($animal)) == 'DODO'){
-//                $_SESSION['myAnimal'] = new Dodo();
-//            }
-//            else {
-//                $_SESSION['myAnimal'] = new Pet();
-//            }
-//
-//            //$_SESSION['animal']=$animal;
-//            $f3->reroute('/order2');
-//        }
-//        else{
-//            $f3->set("errors['animal']","Please enter an animal.");
-//        }
-//    }
-//    $view = new Template();
-//    echo $view->render('views/form1.html');
 });
 
 // route to our second page of our order form
 // define another route called order that displays a form
-$f3->route('GET|POST /order2', function($f3) {
+$f3->route('GET|POST /order2', function() {
     $GLOBALS['controller']->form2();
-
-//    if(isset($_POST['color']))
-//    {
-//        //for keeping form sticky
-//        $colorIsValid = false;
-//        $nameIsValid = false;
-//
-//        $color = $_POST['color'];
-//        $name = $_POST['petName'];
-//        $f3->set('displayColor', $color);
-//        $f3->set('displayName', $name);
-//        if(validColor($color))
-//        {
-//            $_SESSION['myAnimal']->setColor($color);
-//            $colorIsValid = true;
-//            //$_SESSION['color']=$color;
-//            //$f3->reroute('/results');
-//        }
-//        else {
-//            $f3->set("errors['color']","Please enter an color.");
-//        }
-//
-//        if (validName($name)){
-//            $_SESSION['myAnimal']->setName($name);
-//            $nameIsValid = true;
-//        }
-//        else {
-//            $f3->set("errors['pName']","Please enter a pet name.");
-//        }
-//
-//        if ($colorIsValid && $nameIsValid){
-//            $f3->reroute('/results');
-//        }
-//
-//    }
-//
-////    $_SESSION['animal'] = $_POST['animal'];
-//    $view = new Template();
-//    echo $view->render('views/form2.html');
 });
 
 // route to our results page of our order form
 // define another route called order that displays a form
 $f3->route('GET|POST /results', function() {
     $GLOBALS['controller']->results();
+});
 
-////    $_SESSION['color'] = $_POST['color'];
-//    $view = new Template();
-//    echo $view->render('views/results.html');
+// route show that will display all of the pets
+$f3->route('GET /show', function() {
+    $GLOBALS['controller']->show();
 });
 
 // fun Fat-Free
