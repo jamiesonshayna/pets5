@@ -41,4 +41,21 @@ class Database
         // get the result
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function addNewPet($pet)
+    {
+        // define the query
+        $sql = "INSERT INTO pets VALUES(default, :name, :color, :type);";
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind the parameters
+        $statement->bindParam(':name', $pet->getName());
+        $statement->bindParam(':color', $pet->getColor());
+        $statement->bindParam(':type', $pet->getType());
+
+        // execute the statement
+        $statement->execute();
+    }
 }

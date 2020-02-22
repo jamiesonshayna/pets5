@@ -1,4 +1,3 @@
-
 <?php
 
 define("DB_DSN", "mysql:dbname=sjamieso_grc");

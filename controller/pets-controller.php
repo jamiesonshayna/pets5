@@ -28,15 +28,19 @@ class PetController
             {
                 if (trim(strtoupper($animal)) == 'CAT'){
                     $_SESSION['myAnimal'] = new Cat();
+                    $_SESSION['myAnimal']->setType('Cat');
                 }
                 else if (trim(strtoupper($animal)) == 'DOG'){
                     $_SESSION['myAnimal'] = new Dog();
+                    $_SESSION['myAnimal']->setType('Dog');
                 }
                 else if (trim(strtoupper($animal)) == 'DODO'){
                     $_SESSION['myAnimal'] = new Dodo();
+                    $_SESSION['myAnimal']->setType('Dodo');
                 }
                 else {
                     $_SESSION['myAnimal'] = new Pet();
+                    $_SESSION['myAnimal']->setType('Pet');
                 }
 
                 //$_SESSION['animal']=$animal;
@@ -80,6 +84,10 @@ class PetController
             }
 
             if ($colorIsValid && $nameIsValid){
+                // if the last two fields are valid then we want to save results to database
+                $GLOBALS['db']->addNewPet($_SESSION['myAnimal']);
+
+                // route to summary/results page
                 $this->_f3->reroute('/results');
             }
 
